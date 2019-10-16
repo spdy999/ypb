@@ -1,62 +1,73 @@
 <template>
-  <form id="app" data-customers="initial">
-    <div v-for="(customer, index) in customers" :key="index">
-      <div>
-        <div class="form-group col-xs-5">
-          <label>Name</label>
-          <input
-            v-model="customer.name"
-            name="customers[][name]"
-            class="form-control"
-            placeholder="Name"
-            required
-          />
-        </div>
-        <div class="form-group col-xs-5">
-          <label>Email</label>
-          <input
+  <div>
+    <b-form @submit="onSubmit" data-customers="initial">
+      <div v-for="(customer, index) in customers" :key="index">
+        <b-form-group id="input-group-2" label="Name:" label-for="input-2" required>
+          <b-form-input id="input-2" v-model="customer.name" required placeholder="Enter name"></b-form-input>
+        </b-form-group>
+
+        <b-form-group id="input-group-1" label="Email " label-for="input-1">
+          <b-form-input
+            id="input-1"
             v-model="customer.email"
             type="email"
-            name="customers[][email]"
-            class="form-control"
-            placeholder="Email"
-          />
+            required
+            placeholder="Enter email"
+          ></b-form-input>
+        </b-form-group>
+
+        <b-form-group label="Form-checkbox-group stacked checkboxes">
+          <b-form-checkbox-group
+            v-model="customer.selected"
+            :options="options"
+            name="flavour-2a"
+            stacked
+          ></b-form-checkbox-group>
+        </b-form-group>
+
+        <hr />
+      </div>
+
+      <div class="row">
+        <div class="col-xs-2">
+          <b-button
+            type="button"
+            v-on:click="addCustomer"
+            class="btn btn-block btn-success"
+          >Add Customer</b-button>
         </div>
       </div>
-    </div>
-
-    <div class="row">
-      <div class="col-xs-2">
-        <button
-          type="button"
-          v-on:click="addCustomer"
-          class="btn btn-block btn-success"
-        >Add Customer</button>
+      <div class="row">
+        <div class="col-xs-2">
+          <b-button
+            type="submit"
+            v-on:click.prevent="onSubmit"
+            class="btn btn-block btn-primary"
+          >Save</b-button>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-2">
-        <button type="submit" v-on:click.prevent="sumbitForm" class="btn btn-block btn-primary">Save</button>
-      </div>
-    </div>
-    <hr />
-    <pre>{{ $data }}</pre>
-  </form>
+      <hr />
+    </b-form>
+    <pre>{{ customers }}</pre>
+  </div>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      initial: [
-        { name: "Name", email: "email@mail.com" }
-        // { name: "42000", email: "32" }
-      ],
+      initial: [{ name: "", email: "" }],
       customer: {
         name: "",
-        email: ""
+        email: "",
+        selected: [] // Must be an array reference!
       },
-      customers: []
+      customers: [],
+      options: [
+        { text: "Apple Juice", value: "Apple Juice" },
+        { text: "Orange Juice", value: "Orange Juice" },
+        { text: "Watermelon Juice", value: "Watermelon Juice" }
+      ]
     };
   },
   mounted() {
@@ -66,13 +77,9 @@ export default {
     addCustomer() {
       this.customers.push(this.customer);
     },
-    removeApartment() {
-      // removeApartment(index) {
-      // Vue.delete(this.customers, index);
-    },
-    sumbitForm() {
-      console.info("<< Form Submitted >>");
-      console.info("Vue.js customers object:", this.customers);
+    onSubmit(evt) {
+      evt.preventDefault();
+      console.log("submit");
     }
   }
 };
