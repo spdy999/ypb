@@ -2,15 +2,18 @@
   <div>
     <!-- <b-button @click="onClickAddCustomer">Add Customer</b-button>
     <b-button>Save</b-button>-->
-    <TestForm />
+    <!-- <TestForm /> -->
+    <CustomerForm />
   </div>
 </template>
 
 <script>
-import TestForm from "./TestForm.vue";
+// import TestForm from "./TestForm.vue";
+import CustomerForm from "./CustomerForm.vue";
 export default {
   components: {
-    TestForm
+    // TestForm,
+    CustomerForm
   },
   methods: {
     onClickAddCustomer() {

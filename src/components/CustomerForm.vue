@@ -17,14 +17,13 @@
 
         <b-form-group label="Form-checkbox-group stacked checkboxes">
           <b-form-checkbox-group
-            v-model="customer.selected"
+            v-model="customer.favouriteJuice"
             :options="options"
             name="flavour-2a"
             stacked
           ></b-form-checkbox-group>
         </b-form-group>
       </div>
-      <!-- <b-button type="submit" variant="primary"></b-button> -->
       <b-button type="submit" variant="primary">Save</b-button>
       <b-button v-on:click="addCustomer" variant="danger">Add Customer</b-button>
     </b-form>
@@ -38,11 +37,17 @@
 export default {
   data() {
     return {
-      initial: [{ name: "", email: "" }],
+      initial: [
+        {
+          email: "",
+          name: "",
+          favouriteJuice: []
+        }
+      ],
       customer: {
         email: "",
         name: "",
-        selected: [] // Must be an array reference!
+        favouriteJuice: []
       },
 
       options: [
