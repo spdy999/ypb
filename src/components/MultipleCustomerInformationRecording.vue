@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-button>Add Customer</b-button>
+    <b-button @click="onClickAddCustomer">Add Customer</b-button>
     <b-button>Save</b-button>
     <CustomerForm />
   </div>
@@ -12,9 +12,11 @@ import CustomerForm from "./CustomerForm";
 export default {
   components: {
     CustomerForm
+  },
+  methods: {
+    onClickAddCustomer: () => {
+      console.log("hello");
+    }
   }
-  // methods: {
-  //   onClickAddCustomer() {}
-  // }
 };
 </script>
