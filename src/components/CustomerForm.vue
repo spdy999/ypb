@@ -29,8 +29,10 @@
       <b-button type="submit" variant="success">Save</b-button>
     </b-form>
 
-    <b-modal id="modal-1" title="Added Customers" @ok="onReset" ref="modal">
+    <b-modal id="modal-1" title="Added Customers" ref="modal" hide-footer>
       <p class="my-4">{{customers}}</p>
+
+      <b-button class="mt-3" variant="outline-danger" block @click="onReset">Close</b-button>
     </b-modal>
   </div>
 </template>
