@@ -25,13 +25,9 @@
         </b-form-group>
         <hr />
       </div>
-      <b-button type="submit" variant="primary">Save</b-button>
-      <b-button v-on:click="addCustomer" variant="danger">Add Customer</b-button>
+      <b-button v-on:click="addCustomer" variant="primary">Add Customer</b-button>
+      <b-button type="submit" variant="success">Save</b-button>
     </b-form>
-    <b-card class="mt-3" header="Form Data Result">
-      <pre class="m-0">{{ customers }}</pre>
-    </b-card>
-    <!-- <ResultModal /> -->
 
     <b-modal id="modal-1" title="Added Customers" @ok="onReset" ref="modal">
       <p class="my-4">{{customers}}</p>
@@ -40,11 +36,7 @@
 </template>
 
 <script>
-// import ResultModal from "./ResultModal";
 export default {
-  components: {
-    // ResultModal
-  },
   data() {
     return {
       initial: [
@@ -83,19 +75,6 @@ export default {
     },
     onReset(evt) {
       evt.preventDefault();
-      // Reset our form values
-
-      // this.$bvModal.hide("modal-1");
-      // this.customer.email = "";
-      // this.customer.name = "";
-      // this.customer.favouriteJuice = [];
-
-      // Trick to reset/clear native browser form validation state
-      // this.show = false;
-      // this.$nextTick(() => {
-      //   this.show = true;
-      // });
-
       this.customers = [
         {
           email: "",
@@ -103,8 +82,6 @@ export default {
           favouriteJuice: []
         }
       ];
-      console.log(this.customers);
-      console.log(this.initial);
 
       this.$nextTick(() => {
         this.$refs.modal.hide();
