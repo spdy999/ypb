@@ -1,16 +1,11 @@
 <template>
   <div id="app">
-    <MultipleCustomerInformationRecording />
+    <router-view />
   </div>
 </template>
 
 <script>
-import MultipleCustomerInformationRecording from "./components/MultipleCustomerInformationRecording.vue";
-
 export default {
-  name: "app",
-  components: {
-    MultipleCustomerInformationRecording
-  }
+  name: "app"
 };
 </script>
