@@ -19,9 +19,11 @@
           <b-form-checkbox-group
             v-model="customer.favouriteJuice"
             :options="options"
+            :state="state[index]"
             name="flavour-2a"
             stacked
           ></b-form-checkbox-group>
+          <b-form-invalid-feedback :state="state[index]">Please select at least one juice</b-form-invalid-feedback>
         </b-form-group>
         <hr />
       </div>
@@ -63,6 +65,17 @@ export default {
       customers: []
     };
   },
+
+  computed: {
+    state() {
+      const validate = this.customers.map(
+        customer => customer.favouriteJuice.length >= 1
+      );
+
+      return validate;
+    }
+  },
+
   mounted() {
     this.customers = this.initial;
   },
@@ -75,10 +88,14 @@ export default {
       };
       this.customers.push(this.customer);
     },
+    checkState(state) {
+      return state.every(v => v === true);
+    },
     onSubmit(evt) {
       evt.preventDefault();
-
-      this.$bvModal.show("modal-1");
+      if (this.checkState(this.state)) {
+        this.$bvModal.show("modal-1");
+      }
     },
     onReset(evt) {
       evt.preventDefault();
