@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <MultipleCustomerInformationRecording />
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import MultipleCustomerInformationRecording from "./components/MultipleCustomerInformationRecording.vue";
 
 export default {
   name: "app",
   components: {
-    HelloWorld
+    MultipleCustomerInformationRecording
   }
 };
 </script>
