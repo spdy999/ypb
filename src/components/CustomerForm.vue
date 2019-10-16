@@ -66,6 +66,11 @@ export default {
   },
   methods: {
     addCustomer() {
+      this.customer = {
+        email: "",
+        name: "",
+        favouriteJuice: []
+      };
       this.customers.push(this.customer);
     },
     onSubmit(evt) {
