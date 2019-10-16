@@ -23,6 +23,7 @@
             stacked
           ></b-form-checkbox-group>
         </b-form-group>
+        <hr />
       </div>
       <b-button type="submit" variant="primary">Save</b-button>
       <b-button v-on:click="addCustomer" variant="danger">Add Customer</b-button>
@@ -30,11 +31,16 @@
     <b-card class="mt-3" header="Form Data Result">
       <pre class="m-0">{{ customers }}</pre>
     </b-card>
+    <ResultModal />
   </div>
 </template>
 
 <script>
+import ResultModal from "./ResultModal";
 export default {
+  components: {
+    ResultModal
+  },
   data() {
     return {
       initial: [
@@ -68,7 +74,9 @@ export default {
     },
     onSubmit(evt) {
       evt.preventDefault();
-      alert(JSON.stringify(this.customer));
+      // alert(JSON.stringify(this.customer));
+
+      this.$bvModal.show("modal-1");
     },
     onReset(evt) {
       evt.preventDefault();
