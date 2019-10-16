@@ -15,7 +15,7 @@
           ></b-form-input>
         </b-form-group>
 
-        <b-form-group label="Form-checkbox-group stacked checkboxes">
+        <b-form-group label="Favourite Juice">
           <b-form-checkbox-group
             v-model="customer.favouriteJuice"
             :options="options"
@@ -31,15 +31,19 @@
     <b-card class="mt-3" header="Form Data Result">
       <pre class="m-0">{{ customers }}</pre>
     </b-card>
-    <ResultModal />
+    <!-- <ResultModal /> -->
+
+    <b-modal id="modal-1" title="Added Customers" @ok="onReset" ref="modal">
+      <p class="my-4">{{customers}}</p>
+    </b-modal>
   </div>
 </template>
 
 <script>
-import ResultModal from "./ResultModal";
+// import ResultModal from "./ResultModal";
 export default {
   components: {
-    ResultModal
+    // ResultModal
   },
   data() {
     return {
@@ -74,21 +78,36 @@ export default {
     },
     onSubmit(evt) {
       evt.preventDefault();
-      // alert(JSON.stringify(this.customer));
 
       this.$bvModal.show("modal-1");
     },
     onReset(evt) {
       evt.preventDefault();
       // Reset our form values
-      this.form.email = "";
-      this.form.name = "";
-      this.form.food = null;
-      this.form.checked = [];
+
+      // this.$bvModal.hide("modal-1");
+      // this.customer.email = "";
+      // this.customer.name = "";
+      // this.customer.favouriteJuice = [];
+
       // Trick to reset/clear native browser form validation state
-      this.show = false;
+      // this.show = false;
+      // this.$nextTick(() => {
+      //   this.show = true;
+      // });
+
+      this.customers = [
+        {
+          email: "",
+          name: "",
+          favouriteJuice: []
+        }
+      ];
+      console.log(this.customers);
+      console.log(this.initial);
+
       this.$nextTick(() => {
-        this.show = true;
+        this.$refs.modal.hide();
       });
     }
   }
