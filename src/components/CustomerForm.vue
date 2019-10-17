@@ -32,7 +32,7 @@
     </b-form>
 
     <b-modal id="modal-1" title="Added Customers" ref="modal" hide-footer>
-      <p class="my-4">{{customers}}</p>
+      <pre class="my-4">{{JSON.stringify(customers, null, 2)}}</pre>
 
       <b-button class="mt-3" variant="outline-danger" block @click="onReset">Close</b-button>
     </b-modal>
